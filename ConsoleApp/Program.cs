@@ -158,9 +158,6 @@ class Ejercicios
     {
         int numero;
         string[] numerosRomanos = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X" };
-
-        do
-        {
             Console.WriteLine("Ingrese un número entero del 1 al 10:");
             string input = Console.ReadLine();
 
@@ -170,7 +167,6 @@ class Ejercicios
                 {
                     string equivalenciaRomana = numerosRomanos[numero - 1];
                     Console.WriteLine($"El número {numero} en números romanos es: {equivalenciaRomana}");
-                    break;
                 }
                 else
                 {
@@ -181,7 +177,6 @@ class Ejercicios
             {
                 Console.WriteLine("Por favor, ingrese un número válido.");
             }
-        } while (true);
     }
     //====================================================================================================
     /// Ejercicio 4:
@@ -366,9 +361,9 @@ class Ejercicios
 
         Console.Write("\a Escribe el número de la operación: \a");
         int opcion;
-        while (!int.TryParse(Console.ReadLine(), out opcion) || opcion < 1 || opcion > 4)
+        while (!int.TryParse(Console.ReadLine(), out opcion) || opcion < 1 || opcion > 5)
         {
-            Console.WriteLine("Introduce una opción válida (1-4).");
+            Console.WriteLine("Introduce una opción válida (1-5).");
             Console.Write("\a Escribe el número de la operación: \a");
         }
 
@@ -402,17 +397,21 @@ class Ejercicios
                 resultado = num1 / num2;
                 break;
             case 5:
-                for (int i = 0; i < num2; i++)
+                resultado = num1;
+                for (int i = 1; i < num2; i++)
                 {
                     resultado *= num1;
                 }
+                break;
             default:
                 Console.WriteLine("Opción no válida");
                 return;
         }
 
         Console.WriteLine("El resultado de la operación es: " + resultado + "\n\n");
+
+        File.WriteAllText("operacion.txt", $"{num1} {(char)opcion} {num2} = {resultado}");
     }
+
     //=================================================================FinCodigo
 }
-   
